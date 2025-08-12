@@ -1,0 +1,51 @@
+{
+  "name": "custom-word-level-tokenizer",
+  "version": "1.0.0",
+  "description": "A comprehensive, educational implementation of a word-level tokenizer for understanding LLM basics",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "demo": "node examples/demo.js",
+    "example": "node examples/basic-usage.js",
+    "serve": "node public/server.js",
+    "test": "node -e \"const { Tokenizer } = require('./index.js'); const t = new Tokenizer(); console.log('✅ Tokenizer loaded successfully'); console.log('Available classes:', Object.keys(require('./index.js')));\"",
+    "clean": "rm -rf data/*.json",
+    "reset": "npm run clean && npm run demo"
+  },
+  "keywords": [
+    "tokenizer",
+    "nlp",
+    "machine-learning",
+    "llm",
+    "natural-language-processing",
+    "javascript",
+    "education",
+    "text-processing",
+    "vocabulary",
+    "encoding"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/custom-tokenizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/custom-tokenizer/issues"
+  },
+  "homepage": "https://github.com/yourusername/custom-tokenizer#readme",
+  "files": [
+    "src/",
+    "examples/",
+    "public/",
+    "index.js",
+    "README.md"
+  ],
+  "directories": {
+    "example": "examples",
+    "lib": "src"
+  }
+}
