@@ -1,6 +1,6 @@
 /**
  * Main entry point for the Custom Word-Level Tokenizer
- * @author Your Name
+ * @author Kanishk Chandna
  * @version 1.0.0
  */
 

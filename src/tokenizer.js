@@ -1,7 +1,7 @@
 /**
  * Custom Word-Level Tokenizer
  * A file-based tokenizer for educational purposes and practical use
- * @author Your Name
+ * @author Kanishk Chandna
  * @version 1.0.0
  */
 

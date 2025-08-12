@@ -1,12 +1,23 @@
 # Custom Word-Level Tokenizer
 
-A comprehensive, educational implementation of a word-level tokenizer built in pure JavaScript. This project demonstrates the fundamental concepts of tokenization, vocabulary management, and text encoding/decoding as used in Large Language Models (LLMs).
+A comprehensive, educational web application implementing a word-level tokenizer built in pure JavaScript. This project demonstrates the fundamental concepts of tokenization, vocabulary management, and text encoding/decoding as used in Large Language Models (LLMs).
 
 ![Tokenizer Demo](https://img.shields.io/badge/Demo-Live-green) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow) ![File-Based](https://img.shields.io/badge/Storage-File--Based-blue) ![License](https://img.shields.io/badge/License-MIT-red)
 
 ## 🎯 Project Overview
 
 This tokenizer is designed to help developers understand the basics of how text is processed in machine learning models. It features a clean, file-based architecture that persists vocabulary between sessions, making it suitable for both learning and practical applications.
+
+## ⚡ Quick Start
+
+Get up and running in seconds:
+
+```bash
+npm start
+# Open http://localhost:3001 in your browser
+```
+
+That's it! The web interface will open where you can immediately start tokenizing text.
 
 ### Key Features
 
@@ -24,10 +35,9 @@ This tokenizer is designed to help developers understand the basics of how text 
 - [Quick Start](#quick-start)
 - [Usage Examples](#usage-examples)
 - [API Reference](#api-reference)
-- [Frontend Interface](#frontend-interface)
+- [Web Interface](#web-interface)
 - [Architecture](#architecture)
 - [File Structure](#file-structure)
-- [Advanced Features](#advanced-features)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -36,7 +46,7 @@ This tokenizer is designed to help developers understand the basics of how text 
 ### Prerequisites
 
 - **Node.js** (version 14 or higher)
-- **Web browser** (for frontend interface)
+- **Web browser** (for web interface)
 - **Git** (optional, for cloning)
 
 ### Setup Instructions
@@ -44,50 +54,49 @@ This tokenizer is designed to help developers understand the basics of how text 
 1. **Clone the repository** (or download as ZIP):
    ```bash
    git clone <your-repo-url>
-   cd custom-tokenizer
+   cd custom-word-level-tokenizer
    ```
 
 2. **No additional installation required!** This project uses only vanilla JavaScript and built-in Node.js modules.
 
-3. **Verify installation**:
-   ```bash
-   node index.js
-   ```
-
-You should see the tokenizer demo output with vocabulary initialization.
-
 ## 🏃‍♂️ Quick Start
 
-### Command Line Usage
+### Starting the Application
 
 ```bash
-# Run the complete demo
-npm run demo
-
-# Run basic usage examples
-npm run example
-
 # Start the web server
-npm run serve
+npm start
 
-# Test the installation
-npm test
+# Alternative: development mode (same as start)
+npm run dev
 ```
 
-### Web Interface Usage
+### Using the Web Interface
 
-1. **Start the development server**:
+1. **Start the application**:
    ```bash
-   npm run serve
+   npm start
    ```
 
-2. **Open your browser** to `http://localhost:3000`
+2. **Open your browser** to the URL shown in the terminal (typically `http://localhost:3001`)
 
-3. **Start tokenizing!** Enter text and see real-time results.
+3. **Start tokenizing!** Enter text and see real-time results in the beautiful web interface.
 
 ## 💡 Usage Examples
 
-### Basic Tokenization
+### Web Interface Usage
+
+The primary way to use this tokenizer is through the interactive web interface:
+
+1. **Enter text** in the input area
+2. **Click "Tokenize"** to see the text split into tokens
+3. **Click "Encode"** to convert tokens to numerical IDs
+4. **Click "Decode"** to convert the IDs back to text
+5. **Manage vocabulary** using the vocabulary management buttons
+
+### Programmatic Usage
+
+You can also use the tokenizer programmatically:
 
 ```javascript
 const { Tokenizer } = require('./index.js');
@@ -209,7 +218,7 @@ Manually saves vocabulary to file.
 #### `loadVocabFromFile(filename?)`
 Loads vocabulary from file.
 
-## 🎨 Frontend Interface
+## 🎨 Web Interface
 
 The web interface provides an intuitive way to test the tokenizer:
 
@@ -264,13 +273,10 @@ File Storage → Vocabulary Load → Decoding → Text Output
 │   ├── tokenizer.js      # Main Tokenizer class
 │   ├── api.js            # High-level API wrapper
 │   └── utils.js          # Utility functions
-├── examples/             # Usage examples
-│   ├── demo.js           # Interactive demonstration
-│   └── basic-usage.js    # Simple usage examples
-├── public/               # Frontend assets
+├── public/               # Web application
 │   ├── index.html        # Beautiful web interface
 │   ├── frontend.js       # Frontend JavaScript logic
-│   └── server.js         # Local development server
+│   └── server.js         # Web server
 ├── data/                 # Data storage
 │   └── vocabulary.json   # Auto-generated vocabulary
 ├── index.js              # Main entry point (exports all classes)
@@ -284,11 +290,9 @@ File Storage → Vocabulary Load → Decoding → Text Output
 - **`src/tokenizer.js`** - Core Tokenizer class with clean implementation
 - **`src/api.js`** - High-level TokenizerAPI for simplified usage
 - **`src/utils.js`** - TokenizerUtils with helper functions
-- **`examples/demo.js`** - Interactive demonstration script
-- **`examples/basic-usage.js`** - Simple usage examples
 - **`public/index.html`** - Modern, responsive web interface
 - **`public/frontend.js`** - Web interface logic and UI interactions
-- **`public/server.js`** - Local development server
+- **`public/server.js`** - Web server for the application
 - **`data/vocabulary.json`** - Auto-generated vocabulary storage
 - **`index.js`** - Main entry point that exports all classes
 
