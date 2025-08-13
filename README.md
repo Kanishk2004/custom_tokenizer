@@ -2,6 +2,8 @@
 
 A comprehensive, educational web application implementing a word-level tokenizer built in pure JavaScript. This project demonstrates the fundamental concepts of tokenization, vocabulary management, and text encoding/decoding as used in Large Language Models (LLMs).
 
+Live Demo URL - https://custom-tokenizer-one-black.vercel.app/
+
 ![Tokenizer Demo](https://img.shields.io/badge/Demo-Live-green) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow) ![File-Based](https://img.shields.io/badge/Storage-File--Based-blue) ![License](https://img.shields.io/badge/License-MIT-red)
 
 ## 🎯 Project Overview
