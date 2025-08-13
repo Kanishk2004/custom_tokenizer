@@ -2,9 +2,9 @@
 
 A comprehensive, educational web application implementing a word-level tokenizer built in pure JavaScript. This project demonstrates the fundamental concepts of tokenization, vocabulary management, and text encoding/decoding as used in Large Language Models (LLMs).
 
-Live Demo URL - https://custom-tokenizer-one-black.vercel.app/
+🚀 **Live Demo**: [https://custom-tokenizer-one-black.vercel.app/](https://custom-tokenizer-one-black.vercel.app/)
 
-![Tokenizer Demo](https://img.shields.io/badge/Demo-Live-green) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow) ![File-Based](https://img.shields.io/badge/Storage-File--Based-blue) ![License](https://img.shields.io/badge/License-MIT-red)
+![Tokenizer Demo](https://img.shields.io/badge/Demo-Live-green) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow) ![Vercel](https://img.shields.io/badge/Deployed-Vercel-black) ![License](https://img.shields.io/badge/License-MIT-red)
 
 ## 🎯 Project Overview
 
@@ -12,34 +12,47 @@ This tokenizer is designed to help developers understand the basics of how text 
 
 ## ⚡ Quick Start
 
-Get up and running in seconds:
+🌐 **Try it online**: [https://custom-tokenizer-one-black.vercel.app/](https://custom-tokenizer-one-black.vercel.app/)
+
+Or run locally:
 
 ```bash
 npm start
 # Open http://localhost:3001 in your browser
 ```
 
-That's it! The web interface will open where you can immediately start tokenizing text.
+### 🚀 Deployment
+
+This project is deployed on Vercel for instant access worldwide. The live demo showcases all features including:
+- Real-time tokenization as you type
+- Dynamic vocabulary expansion
+- Visual encoding/decoding with token IDs
+- Interactive vocabulary management
 
 ### Key Features
 
-- ✅ **Pure JavaScript Implementation** - No external dependencies
-- 🗂️ **File-Based Vocabulary Storage** - Persistent vocabulary that survives restarts
+- ✅ **Pure JavaScript Implementation** - No external dependencies, runs entirely in the browser
+- 🌐 **Live Web Application** - Deployed on Vercel with global CDN for fast access
+- 🗂️ **Client-Side Vocabulary Storage** - Persistent vocabulary using browser localStorage
 - 🔄 **Dynamic Vocabulary Expansion** - Automatically adds new tokens during encoding
 - 📝 **Case-Insensitive Processing** - Normalizes text to lowercase for better vocabulary efficiency
-- 🎨 **Modern Web Interface** - Beautiful, responsive frontend for interactive testing
-- 🔧 **Educational Focus** - Well-commented code for learning purposes
-- ⚡ **Real-time Processing** - Instant tokenization and encoding feedback
+- 🎨 **Modern Web Interface** - Beautiful, responsive frontend built with Tailwind CSS
+- 🔧 **Educational Focus** - Well-commented code for learning tokenization concepts
+- ⚡ **Real-time Processing** - Instant tokenization with visual feedback and debounced input
+- 📊 **Interactive Statistics** - Live vocabulary size, token counts, and success rates
+- 🎯 **Round-trip Validation** - Ensures encoding/decoding accuracy with visual indicators
 
 ## 📋 Table of Contents
 
 - [Installation](#installation)
 - [Quick Start](#quick-start)
+- [Live Demo](#live-demo)
 - [Usage Examples](#usage-examples)
+- [Web Interface Features](#web-interface-features)
 - [API Reference](#api-reference)
-- [Web Interface](#web-interface)
 - [Architecture](#architecture)
 - [File Structure](#file-structure)
+- [Deployment](#deployment)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -53,13 +66,19 @@ That's it! The web interface will open where you can immediately start tokenizin
 
 ### Setup Instructions
 
-1. **Clone the repository** (or download as ZIP):
-   ```bash
-   git clone <your-repo-url>
-   cd custom-word-level-tokenizer
+1. **Try the live demo** (recommended):
+   ```
+   Visit: https://custom-tokenizer-one-black.vercel.app/
    ```
 
-2. **No additional installation required!** This project uses only vanilla JavaScript and built-in Node.js modules.
+2. **Or run locally**:
+   ```bash
+   git clone https://github.com/Kanishk2004/custom_tokenizer.git
+   cd custom_tokenizer
+   npm start
+   ```
+
+3. **No installation required!** This project uses only vanilla JavaScript and built-in Node.js modules.
 
 ## 🏃‍♂️ Quick Start
 
@@ -84,17 +103,53 @@ npm run dev
 
 3. **Start tokenizing!** Enter text and see real-time results in the beautiful web interface.
 
+## 🌐 Live Demo
+
+Experience the tokenizer instantly without any setup:
+
+**🔗 Demo URL**: [https://custom-tokenizer-one-black.vercel.app/](https://custom-tokenizer-one-black.vercel.app/)
+
+### Demo Features
+- 🚀 **Instant Access** - No downloads or installations required
+- 📱 **Mobile Friendly** - Works perfectly on phones and tablets  
+- ⚡ **Fast Loading** - Deployed on Vercel's global CDN
+- 🔄 **Real-time Updates** - See tokenization results as you type (with smart debouncing)
+- 📊 **Live Statistics** - Watch vocabulary grow and see processing metrics
+- 🎨 **Professional UI** - Clean, modern interface built with Tailwind CSS
+
+### How to Use the Demo
+1. **Visit the demo URL** - Click the link above
+2. **Enter text** - Type in the text input area
+3. **See tokens** - Watch automatic tokenization (debounced for smooth experience)
+4. **Click "Encode"** - Convert tokens to numerical IDs  
+5. **Click "Decode"** - Convert IDs back to text
+6. **Explore vocabulary** - Use management buttons to view and control the vocabulary
+
 ## 💡 Usage Examples
 
-### Web Interface Usage
+### 🌐 Web Interface Usage (Recommended)
 
 The primary way to use this tokenizer is through the interactive web interface:
 
-1. **Enter text** in the input area
-2. **Click "Tokenize"** to see the text split into tokens
+**Live Demo**: [https://custom-tokenizer-one-black.vercel.app/](https://custom-tokenizer-one-black.vercel.app/)
+
+1. **Enter text** in the input area (e.g., "Hello, world! This is amazing.")
+2. **Watch auto-tokenization** - Tokens appear automatically as you type (debounced)
 3. **Click "Encode"** to convert tokens to numerical IDs
-4. **Click "Decode"** to convert the IDs back to text
+4. **Click "Decode"** to convert the IDs back to text  
 5. **Manage vocabulary** using the vocabulary management buttons
+6. **View statistics** - See real-time vocab size, tokens processed, and success rates
+
+### Example Workflow in Web Interface
+```
+Input: "Hello, world! Machine learning is fun."
+↓ (Auto-tokenization)
+Tokens: ["hello", ",", "world", "!", "machine", "learning", "is", "fun", "."]
+↓ (Click Encode)  
+Encoded: [1, 2, 3, 4, 15, 16, 6, 17, 10]
+↓ (Click Decode)
+Decoded: "hello, world! machine learning is fun."
+```
 
 ### Programmatic Usage
 
@@ -220,19 +275,36 @@ Manually saves vocabulary to file.
 #### `loadVocabFromFile(filename?)`
 Loads vocabulary from file.
 
-## 🎨 Web Interface
+## 🎨 Web Interface Features
 
-The web interface provides an intuitive way to test the tokenizer:
+The web interface provides an intuitive and powerful way to explore tokenization:
 
-### Features
+### 🎯 Main Features
 
-- **📝 Text Input Area** - Enter text for tokenization
-- **🔧 Control Panel** - Buttons for encode, decode, and clear operations
-- **📊 Live Statistics** - Real-time vocabulary size and processing stats
-- **📋 Results Display** - Visual representation of tokens, encoded IDs, and decoded text
-- **🗂️ Vocabulary Management** - Load, save, reset, and view vocabulary
-- **📰 Activity Log** - Track all operations and changes
-- **📱 Responsive Design** - Works on desktop and mobile devices
+- **📝 Smart Text Input** - Auto-tokenization with debounced input (no loading spam!)
+- **🔧 Action Buttons** - Tokenize, Encode, Decode, and Clear operations
+- **📊 Live Statistics Dashboard** - Real-time metrics displayed in beautiful cards:
+  - Vocabulary size with dynamic updates
+  - Total tokens processed counter  
+  - New tokens added tracker
+  - Round-trip success rate percentage
+- **📋 Visual Results Display** - Color-coded token and ID visualization
+- **🗂️ Vocabulary Management** - Interactive vocabulary controls:
+  - Load sample vocabulary with demo tokens
+  - Save vocabulary to browser localStorage  
+  - Reset to default state
+  - View complete vocabulary in a searchable table
+- **📰 Activity Log** - Timestamped operation history
+- **📱 Responsive Design** - Perfect on desktop, tablet, and mobile
+
+### 🎨 UI Improvements Made
+
+- **Debounced Input** - Auto-tokenization waits 500ms after you stop typing
+- **Visual Feedback** - Subtle button color changes indicate successful operations  
+- **Smart Clearing** - Empty input automatically clears all outputs
+- **Error Handling** - Helpful error messages with clear instructions
+- **Professional Styling** - Modern gradient backgrounds and card-based layout
+- **Loading States** - Smooth loading animations for longer operations
 
 ### Interface Sections
 
@@ -289,14 +361,51 @@ File Storage → Vocabulary Load → Decoding → Text Output
 
 ### File Descriptions
 
-- **`src/tokenizer.js`** - Core Tokenizer class with clean implementation
-- **`src/api.js`** - High-level TokenizerAPI for simplified usage
-- **`src/utils.js`** - TokenizerUtils with helper functions
-- **`public/index.html`** - Modern, responsive web interface
-- **`public/frontend.js`** - Web interface logic and UI interactions
-- **`public/server.js`** - Web server for the application
-- **`data/vocabulary.json`** - Auto-generated vocabulary storage
+- **`src/tokenizer.js`** - Core Tokenizer class with clean, modular implementation
+- **`src/api.js`** - High-level TokenizerAPI wrapper for simplified usage
+- **`src/utils.js`** - TokenizerUtils with helper functions and validation
+- **`public/index.html`** - Modern, responsive web interface with Tailwind CSS
+- **`public/frontend.js`** - Enhanced frontend logic with debouncing and visual feedback
+- **`public/server.js`** - Local development server (for npm start)
+- **`public/landing.html`** - Professional landing page for Vercel deployment
+- **`data/vocabulary.json`** - Auto-generated vocabulary storage (local development)
 - **`index.js`** - Main entry point that exports all classes
+- **`vercel.json`** - Vercel deployment configuration
+
+## 🚀 Deployment
+
+This project is successfully deployed on **Vercel** for global accessibility:
+
+### Live Application
+- **🌐 Production URL**: [https://custom-tokenizer-one-black.vercel.app/](https://custom-tokenizer-one-black.vercel.app/)
+- **⚡ Performance**: Global CDN with sub-second loading times
+- **📱 Compatibility**: Works across all modern browsers and devices
+- **🔒 Security**: HTTPS enabled with automatic SSL certificates
+
+### Deployment Features
+- **Static Site Generation**: Pure client-side application for maximum performance
+- **Automatic Deployments**: Every push to master branch triggers a new deployment
+- **Preview Deployments**: Each pull request gets its own preview URL
+- **Custom Domain Ready**: Easy to connect your own domain name
+
+### Deploy Your Own Copy
+
+1. **Fork this repository** on GitHub
+2. **Sign up for Vercel** at [vercel.com](https://vercel.com)
+3. **Import your fork** in Vercel dashboard
+4. **Configure settings**:
+   ```
+   Framework Preset: Other
+   Build Command: npm run build  
+   Output Directory: public
+   ```
+5. **Deploy** - Your app will be live in minutes!
+
+### Local Development vs Production
+- **Local**: Uses Node.js server with file-based vocabulary storage
+- **Production**: Pure static files with browser localStorage for vocabulary
+- **Consistency**: Same tokenization logic and UI experience in both environments
+- **`vercel.json`** - Vercel deployment configuration
 
 ## 🔧 Advanced Features
 
@@ -390,14 +499,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Inspiration** - Modern tokenizers like GPT's BPE and SentencePiece
 - **Educational Resources** - Various NLP and machine learning courses
-- **Community** - Feedback and suggestions from developers
+- **Deployment Platform** - Vercel for seamless hosting and global CDN
+- **UI Framework** - Tailwind CSS for beautiful, responsive design
+- **Community** - Feedback and suggestions from developers and educators
 
 ## 📞 Support
 
-- **Issues** - Report bugs via GitHub Issues
-- **Questions** - Ask questions in GitHub Discussions
-- **Documentation** - Check this README and code comments
+- **🌐 Live Demo** - Try it instantly at [https://custom-tokenizer-one-black.vercel.app/](https://custom-tokenizer-one-black.vercel.app/)
+- **🐛 Issues** - Report bugs via [GitHub Issues](https://github.com/Kanishk2004/custom_tokenizer/issues)
+- **💬 Questions** - Ask questions in [GitHub Discussions](https://github.com/Kanishk2004/custom_tokenizer/discussions)
+- **📚 Documentation** - Check this README and explore the live demo
 
 ---
 
-**Built with ❤️ for the developer community to understand tokenization in LLMs**
+**🚀 Built with ❤️ by Kanishk Chandna | Live Demo: [custom-tokenizer-one-black.vercel.app](https://custom-tokenizer-one-black.vercel.app/)**
