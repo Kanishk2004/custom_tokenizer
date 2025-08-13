@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Custom Word-Level Tokenizer</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+		<script>
+			tailwind.config = {
+				theme: {
+					extend: {
+						colors: {
+							primary: '#3B82F6',
+							secondary: '#1E40AF',
+							accent: '#F59E0B',
+							success: '#10B981',
+							error: '#EF4444',
+						},
+					},
+				},
+			};
+		</script>
+	</head>
+	<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+		<!-- Header -->
+		<header class="bg-white shadow-lg border-b-4 border-primary">
+			<div class="container mx-auto px-6 py-6">
+				<div class="flex items-center justify-between">
+					<div class="flex items-center space-x-3">
+						<div class="bg-primary text-white p-3 rounded-lg">
+							<i class="fas fa-cube text-2xl"></i>
+						</div>
+						<div>
+							<h1 class="text-3xl font-bold text-gray-800">Custom Tokenizer</h1>
+							<p class="text-gray-600">
+								Word-Level Tokenization for LLM Understanding
+							</p>
+						</div>
+					</div>
+					<div class="hidden md:flex items-center space-x-4">
+						<span
+							class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+							<i class="fas fa-check-circle mr-1"></i>
+							File-Based
+						</span>
+						<span
+							class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
+							<i class="fas fa-sync-alt mr-1"></i>
+							Dynamic Vocab
+						</span>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<!-- Main Content -->
+		<main class="container mx-auto px-6 py-8">
+			<!-- Stats Cards -->
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+				<div
+					class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-primary">
+					<div class="flex items-center justify-between">
+						<div>
+							<p class="text-gray-600 text-sm font-medium">Vocab Size</p>
+							<p id="vocabSize" class="text-2xl font-bold text-gray-800">0</p>
+						</div>
+						<div class="bg-primary bg-opacity-10 p-3 rounded-lg">
+							<i class="fas fa-book text-primary text-xl"></i>
+						</div>
+					</div>
+				</div>
+
+				<div
+					class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-success">
+					<div class="flex items-center justify-between">
+						<div>
+							<p class="text-gray-600 text-sm font-medium">Tokens Processed</p>
+							<p id="tokensProcessed" class="text-2xl font-bold text-gray-800">
+								0
+							</p>
+						</div>
+						<div class="bg-success bg-opacity-10 p-3 rounded-lg">
+							<i class="fas fa-chart-line text-success text-xl"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-accent">
+					<div class="flex items-center justify-between">
+						<div>
+							<p class="text-gray-600 text-sm font-medium">New Tokens Added</p>
+							<p id="newTokensAdded" class="text-2xl font-bold text-gray-800">
+								0
+							</p>
+						</div>
+						<div class="bg-accent bg-opacity-10 p-3 rounded-lg">
+							<i class="fas fa-plus-circle text-accent text-xl"></i>
+						</div>
+					</div>
+				</div>
+
+				<div
+					class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
+					<div class="flex items-center justify-between">
+						<div>
+							<p class="text-gray-600 text-sm font-medium">
+								Round-trip Success
+							</p>
+							<p id="roundTripSuccess" class="text-2xl font-bold text-gray-800">
+								100%
+							</p>
+						</div>
+						<div class="bg-purple-500 bg-opacity-10 p-3 rounded-lg">
+							<i class="fas fa-recycle text-purple-500 text-xl"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+				<!-- Left Column - Input and Controls -->
+				<div class="space-y-6">
+					<!-- Text Input -->
+					<div class="bg-white rounded-xl shadow-lg p-6">
+						<h2 class="text-xl font-bold text-gray-800 mb-4">
+							<i class="fas fa-edit text-primary mr-2"></i>
+							Text Input
+						</h2>
+						<div class="space-y-4">
+							<div>
+								<label
+									for="inputText"
+									class="block text-sm font-medium text-gray-700 mb-2">
+									Enter text to tokenize:
+								</label>
+								<textarea
+									id="inputText"
+									rows="4"
+									class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+									placeholder="Type your text here... e.g., 'Hello, world! This is a test sentence.'"></textarea>
+							</div>
+
+							<div class="flex flex-wrap gap-3">
+								<button
+									id="tokenizeBtn"
+									class="bg-primary hover:bg-secondary text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2">
+									<i class="fas fa-cogs"></i>
+									<span>Tokenize</span>
+								</button>
+
+								<button
+									id="encodeBtn"
+									class="bg-success hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2">
+									<i class="fas fa-code"></i>
+									<span>Encode</span>
+								</button>
+
+								<button
+									id="decodeBtn"
+									class="bg-accent hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2">
+									<i class="fas fa-undo"></i>
+									<span>Decode</span>
+								</button>
+
+								<button
+									id="clearBtn"
+									class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2">
+									<i class="fas fa-trash"></i>
+									<span>Clear</span>
+								</button>
+							</div>
+
+							<div class="flex items-center space-x-4">
+								<label class="flex items-center space-x-2 cursor-pointer">
+									<input
+										id="expandVocab"
+										type="checkbox"
+										checked
+										class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2" />
+									<span class="text-sm font-medium text-gray-700"
+										>Expand vocabulary with new tokens</span
+									>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- Vocabulary Management -->
+					<div class="bg-white rounded-xl shadow-lg p-6">
+						<h2 class="text-xl font-bold text-gray-800 mb-4">
+							<i class="fas fa-database text-primary mr-2"></i>
+							Vocabulary Management
+						</h2>
+						<div class="space-y-4">
+							<div class="flex flex-wrap gap-3">
+								<button
+									id="loadVocabBtn"
+									class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2">
+									<i class="fas fa-upload"></i>
+									<span>Load Vocab</span>
+								</button>
+
+								<button
+									id="saveVocabBtn"
+									class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2">
+									<i class="fas fa-save"></i>
+									<span>Save Vocab</span>
+								</button>
+
+								<button
+									id="resetVocabBtn"
+									class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2">
+									<i class="fas fa-refresh"></i>
+									<span>Reset Vocab</span>
+								</button>
+
+								<button
+									id="showVocabBtn"
+									class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2">
+									<i class="fas fa-eye"></i>
+									<span>Show Vocab</span>
+								</button>
+							</div>
+
+							<div id="vocabStatus" class="text-sm text-gray-600">
+								<i class="fas fa-info-circle mr-1"></i>
+								Ready to load or create vocabulary
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Right Column - Results -->
+				<div class="space-y-6">
+					<!-- Tokenization Results -->
+					<div class="bg-white rounded-xl shadow-lg p-6">
+						<h2 class="text-xl font-bold text-gray-800 mb-4">
+							<i class="fas fa-list text-primary mr-2"></i>
+							Tokenization Results
+						</h2>
+
+						<!-- Tokens Output -->
+						<div class="mb-6">
+							<h3 class="text-sm font-medium text-gray-700 mb-2">Tokens:</h3>
+							<div
+								id="tokensOutput"
+								class="min-h-[60px] p-4 bg-gray-50 rounded-lg border border-gray-200 text-sm font-mono">
+								<span class="text-gray-500 italic"
+									>Tokens will appear here...</span
+								>
+							</div>
+						</div>
+
+						<!-- Encoded Output -->
+						<div class="mb-6">
+							<h3 class="text-sm font-medium text-gray-700 mb-2">
+								Encoded (Token IDs):
+							</h3>
+							<div
+								id="encodedOutput"
+								class="min-h-[60px] p-4 bg-gray-50 rounded-lg border border-gray-200 text-sm font-mono">
+								<span class="text-gray-500 italic"
+									>Encoded tokens will appear here...</span
+								>
+							</div>
+						</div>
+
+						<!-- Decoded Output -->
+						<div>
+							<h3 class="text-sm font-medium text-gray-700 mb-2">
+								Decoded Text:
+							</h3>
+							<div
+								id="decodedOutput"
+								class="min-h-[60px] p-4 bg-gray-50 rounded-lg border border-gray-200 text-sm">
+								<span class="text-gray-500 italic"
+									>Decoded text will appear here...</span
+								>
+							</div>
+						</div>
+					</div>
+
+					<!-- Vocabulary Display -->
+					<div class="bg-white rounded-xl shadow-lg p-6">
+						<h2 class="text-xl font-bold text-gray-800 mb-4">
+							<i class="fas fa-book-open text-primary mr-2"></i>
+							Current Vocabulary
+						</h2>
+						<div
+							id="vocabularyDisplay"
+							class="max-h-96 overflow-y-auto p-4 bg-gray-50 rounded-lg border border-gray-200">
+							<span class="text-gray-500 italic"
+								>Load or create vocabulary to view tokens...</span
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Activity Log -->
+			<div class="mt-8 bg-white rounded-xl shadow-lg p-6">
+				<h2 class="text-xl font-bold text-gray-800 mb-4">
+					<i class="fas fa-history text-primary mr-2"></i>
+					Activity Log
+				</h2>
+				<div
+					id="activityLog"
+					class="max-h-48 overflow-y-auto p-4 bg-gray-50 rounded-lg border border-gray-200 text-sm font-mono">
+					<div class="text-gray-500 italic">
+						Activity will be logged here...
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<!-- Footer -->
+		<footer class="bg-white border-t border-gray-200 mt-12">
+			<div class="container mx-auto px-6 py-6">
+				<div class="flex flex-col md:flex-row justify-between items-center">
+					<div class="text-gray-600 text-sm">
+						<i class="fas fa-code mr-1"></i>
+						Built with Vanilla JavaScript • File-based Tokenizer
+					</div>
+					<div class="text-gray-600 text-sm mt-2 md:mt-0">
+						<i class="fas fa-github mr-1"></i>
+						Custom Word-Level Tokenizer for LLM Understanding
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<!-- Loading Overlay -->
+		<div
+			id="loadingOverlay"
+			class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+			<div class="bg-white rounded-xl p-8 max-w-sm mx-4 text-center">
+				<div
+					class="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+				<p class="text-gray-700 font-medium">Processing...</p>
+			</div>
+		</div>
+
+		<script src="frontend.js"></script>
+	</body>
+</html>
